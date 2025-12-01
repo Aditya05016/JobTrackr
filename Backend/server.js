@@ -2,6 +2,10 @@ const express = require('express');
 const app = express();
 const dotenv = require('dotenv');
 dotenv.config();
+const authRoutes = require('./routes/authroutes');
+const jobRoutes = require('./routes/jobroutes');
+app.use('/api/auth', authRoutes);
+app.use('/api/jobs', jobRoutes);
 
 const connectDb = require('./config/database');
 
