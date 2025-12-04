@@ -22,3 +22,7 @@ export const handleJob = () => {
 
  return axios.post(`${BASE_URL}/api/jobs/create-job`, newJob);
 }
+
+export const getJobRequest = () => {
+   return axios.get(`${BASE_URL}/api/jobs/getjob`, );
+}
