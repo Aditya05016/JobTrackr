@@ -19,25 +19,27 @@ function App() {
         {/* Public Routes */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/jobs-test" element={<Jobs />} />
+        <Route path="/add-job" element={<Createjob/>} />
 
         {/* Protected Routes */}
-        <Route
+        {/* <Route
           path="/jobs"
           element={
             <ProtectedRoute>
               <Jobs />
             </ProtectedRoute>
           }
-        />
+        /> */}
 
-        <Route
+        {/* <Route
           path="/create-job"
           element={
             <ProtectedRoute>
               <Createjob />
             </ProtectedRoute>
           }
-        />
+        /> */}
 
         <Route
           path="/update-job/:id"
