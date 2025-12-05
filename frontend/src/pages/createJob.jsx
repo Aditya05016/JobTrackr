@@ -2,30 +2,37 @@ import { useState } from "react";
 import { handleJob } from "../utils/axios";
 
 function Createjob() {
-  const [job, setJob] = useState("");
+  const [jobTitle, setJobTitle] = useState("");
   const [company, setCompany] = useState("");
   const [position, setPosition] = useState("");
   const [status, setStatus] = useState("");
   const [location, setLocation] = useState("");
-  
+
   const [data, setData] = useState([]);
 
+  const addJob = async () => {
+    try {
+      const response = await handleJob({
+        jobTitle,
+        company,
+        position,
+        status,
+        location,
+      });
 
-  const addJob =  async () => {
-    try{
+      setData(response.data);
 
-        const response = await handleJob({job,company,position,status,location});
-        setData(response.data);
-        setJob("");
-        setCompany("");
-        setLocation("");
-        setStatus("");
-        setPosition("");
+      // reset form
+      setJobTitle("");
+      setCompany("");
+      setPosition("");
+      setStatus("");
+      setLocation("");
 
-    }catch(error){
-        console.log("Somethign went wrong", error);
+    } catch (error) {
+      console.log("Something went wrong", error);
     }
-  }
+  };
 
   return (
     <div className="flex justify-center items-center bg-slate-200 h-screen">
@@ -42,8 +49,8 @@ function Createjob() {
           <input
             type="text"
             placeholder="Enter job title"
-            value={job}
-            onChange={(e) => setJob(e.target.value)}
+            value={jobTitle}
+            onChange={(e) => setJobTitle(e.target.value)}
             className="p-2 border border-gray-300 rounded-md mt-1 focus:ring-2 focus:ring-blue-400 outline-none"
           />
         </div>
@@ -96,7 +103,10 @@ function Createjob() {
           />
         </div>
 
-        <button onClick={addJob} className="bg-blue-500 text-white p-2 rounded-lg w-full font-semibold hover:bg-blue-600 transition-all hover:scale-105">
+        <button 
+          onClick={addJob}
+          className="bg-blue-500 text-white p-2 rounded-lg w-full font-semibold hover:bg-blue-600 transition-all hover:scale-105"
+        >
           Add Job
         </button>
       </div>

@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Job = require("../models/job");
-const authMiddleware = require("../middleware/authmiddleware");
+const authMiddleware = require('../midlleware/authmiddleware')
 
 // CREATE JOB
 router.post("/create-job", authMiddleware, async (req, res) => {

@@ -10,19 +10,28 @@ export const RegisterRequest = (data) =>{
   return axios.post(`${BASE_URL}/api/auth/register`, data);
 }
 
-export const handleJob = () => {
+export const handleJob = (jobData) => {
 
+  const token = localStorage.getItem("token");  // 🔥 your login token
 
-  const newJob = {
-    job,
-    comapany,
-    position,
-    location,
-  };
+  return axios.post(
+    `${BASE_URL}/api/jobs/create-job`,
+    jobData,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,   // 🔥 important line
+      },
+    }
+  );
+};
 
- return axios.post(`${BASE_URL}/api/jobs/create-job`, newJob);
-}
 
 export const getJobRequest = () => {
-   return axios.get(`${BASE_URL}/api/jobs/getjob`, );
-}
+  const token = localStorage.getItem("token");
+
+  return axios.get(`${BASE_URL}/api/jobs/getjob`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
