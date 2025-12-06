@@ -8,53 +8,72 @@ function Login() {
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
-  const { login } = useAuth(); // <-- import login from context
+  const { login } = useAuth();
 
   const handlelogin = async () => {
     try {
       const response = await loginRequest({ email, password });
+      const token = response.data.token;
 
-      const token = response.data.token;  // <-- token from backend
-      login(token);                       // <-- store token in context & localStorage
+      login(token);
 
       setEmail("");
       setPassword("");
 
-      navigate("/jobs");                  // <-- redirect to jobs page
+      navigate("/jobs");
     } catch (error) {
       console.log("Something went wrong", error);
     }
   };
 
   return (
-    <div className="flex justify-center items-center bg-slate-400 h-screen">
-      <div className="flex flex-col justify-center p-6 m-8 rounded-md">
-        <input
-          type="text"
-          placeholder="Enter your email .."
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="p-2 m-2 rounded-md"
-        />
+    <div className="min-h-screen bg-gradient-to-tr from-white to-blue-200 flex justify-center items-center">
+      
+      <div className="bg-white shadow-lg rounded-xl p-8 max-w-md w-full text-center">
 
-        <input
-          type="password"
-          placeholder="Enter your password .."
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="p-2 m-2 rounded-md"
-        />
+        <h2 className="text-3xl font-bold mb-6">
+          Login to Your Account
+        </h2>
+
+        <div className="text-left mb-4">
+          <label className="font-semibold">Email</label>
+          <input
+            type="text"
+            placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full p-3 mt-1 rounded-md border"
+          />
+        </div>
+
+        <div className="text-left mb-6">
+          <label className="font-semibold">Password</label>
+          <input
+            type="password"
+            placeholder="Enter your password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full p-3 mt-1 rounded-md border"
+          />
+        </div>
 
         <button
           onClick={handlelogin}
-          className="p-2 m-2 rounded-md bg-green-400 text-white"
+          className="bg-blue-600 text-white w-full py-3 rounded-md font-semibold"
         >
           Login
         </button>
 
-        <p>
-          New to <b>Jobify</b>? Register yourself
+        <p className="mt-4">
+          New to <b>Jobify</b>?{" "}
+          <button
+            onClick={() => navigate("/register")}
+            className="text-blue-600 underline"
+          >
+            Register
+          </button>
         </p>
+
       </div>
     </div>
   );

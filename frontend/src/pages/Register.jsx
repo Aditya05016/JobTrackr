@@ -55,34 +55,44 @@ function Register() {
     };
 
     return (
-        <div className="flex justify-center items-center bg-slate-200 h-screen">
-            <div className="flex flex-col justify-center p-6 m-8 rounded-md bg-white shadow-md w-96">
+     <div className="min-h-screen bg-gradient-to-tr from-white to-blue-200 flex justify-center items-center">
+            <div className="bg-white p-8 rounded-xl shadow-lg max-w-md w-full text-center">
 
-                <p className="text-2xl font-bold mb-4">Register</p>
+                <h2 className="text-3xl font-bold mb-6 ">Register Yourself</h2>
+                
 
+                <div className=" text-left mb-4">
+                    <label className="font-semibold">Name</label>
                 <input
                     type="text"
                     placeholder="Enter your name"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="p-2 m-2 rounded-md border"
+                    className="w-full p-3 mt-1 border rounded-md "
                 />
-
+                </div>
+                <div className=" text-left mb-4">
+                    <label className="font-semibold">Email</label>
                 <input
                     type="text"
                     placeholder="Enter your email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="p-2 m-2 rounded-md border"
+                    className=" w-full p-3 mt-1  border rounded-md"
                 />
+                </div>
+                 
 
+                 <div className=" text-left mb-4">
+                    <label className="font-semibold">Password</label>
                 <input
                     type="password"
                     placeholder="Enter your password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="p-2 m-2 rounded-md border"
+                    className=" w-full p-3 mt-1 border rounded-md "
                 />
+                </div>
 
                 <button
                     onClick={handleRegister}
