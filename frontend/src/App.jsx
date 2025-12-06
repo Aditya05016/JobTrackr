@@ -9,13 +9,14 @@ import Register from "./pages/Register";
 import Jobs from "./pages/jobs";
 import Createjob from "./pages/createJob";
 import Updatejob from "./pages/updateJob";
+import Landing from "./pages/landing";
 
 function App() {
   return (
     <AuthProvider>
       <Routes>
         {/* Default route */}
-        <Route path="/" element={<Navigate to="/register" />} />
+        <Route path="/" element={<Landing />} />
 
         {/* Public Routes */}
         <Route path="/login" element={<Login />} />
